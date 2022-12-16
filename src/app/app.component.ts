@@ -9,20 +9,22 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular-with-firebase';
   all: any = [];
-  onNew() {
-    console.log('onNew function invoked');
+  onAdd(addName: string) {
+    console.log('onAdd function invoked');
+    if (addName == '') return;
     try {
+      const now = new Date();
       addDoc(collection(db, 'users'), {
-        name: 'Alessio.' + Math.trunc(Math.random() * 10000),
-        born: 1982,
-        creationDate: new Date(),
+        name: addName + '.' + Math.trunc(Math.random() * 10000),
+        born: Math.trunc(now.getFullYear() - Math.random() * 100),
+        creationDate: now.toISOString(),
       }).then((x) => {
         console.log('Document written with ID: ', x.id);
+        this.getAll();
       });
     } catch (e) {
       console.error('Error adding document: ', e);
     }
-    this.getAll();
   }
 
   getAll() {
@@ -33,12 +35,12 @@ export class AppComponent {
         this.all.push({ id: doc.id, data: JSON.stringify(doc.data()) });
       })
     );
-    return 'ok';
   }
 
   del(id: string) {
-    deleteDoc(doc(db, 'users', id));
-    this.getAll();
+    deleteDoc(doc(db, 'users', id)).then(() => {
+      this.getAll();
+    });
   }
 
   constructor() {

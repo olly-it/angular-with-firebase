@@ -1,5 +1,12 @@
 <span>{{ title }} app is running!</span>
-<div><button (click)="onNew()">new</button></div>
+<div>
+  <input
+    #newPerson
+    (keyup.enter)="onAdd(newPerson.value); newPerson.value = ''"
+  />
+  <!--(blur)="onAdd(newPerson.value); newPerson.value = ''"-->
+  <button (click)="onAdd(newPerson.value); newPerson.value = ''">add</button>
+</div>
 <table border="1">
   <tr>
     <th>ID</th>

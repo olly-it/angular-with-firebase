@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## FIREBASE STUFF - useful commands
+
+- npm install firebase : install firebase base tools
+- npm install -g firebase-tools : install firebase cli
+- firebase login : to log in the firebase cli
+- firebase init : initialize stuff like hosting and firestore
+- npm install firebase-admin --save : install admin stuff (not sure, but shoul be needed for firestore imports)
+- firebase deploy : deploy in production (dist dir is defined in "firebase cli")
